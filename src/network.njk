@@ -10,12 +10,29 @@ permalink: /network/
     <h1>네트워크</h1>
     <p>주민, 행정, 전문가, 기업이 함께 빚을 때 공간은 비로소 모두의 것이 됩니다.</p>
     <nav class="tabs" aria-label="네트워크 하위 메뉴">
+      {%- if entrusted.list.length %}<a href="#entrusted">위·수탁 기관</a>{% endif %}
       <a href="#partners">유관·연계·협력 기관</a>
       <a href="#forum">포럼·세미나</a>
       <a href="#member">회원 안내</a>
     </nav>
   </div>
 </section>
+
+{%- if entrusted.list.length %}
+<section id="entrusted" class="wrap sec">
+  <div class="stack">
+    <p class="eyebrow">위·수탁 기관</p>
+    <h2 class="h2">{% if entrusted.list.length == 1 %}{{ entrusted.list[0].name }}{% else %}함께 운영하는 기관{% endif %}</h2>
+  </div>
+  {%- for e in entrusted.list %}
+  <a href="{{ e.url }}" class="site-shot" target="_blank" rel="noopener" aria-label="{{ e.name }} 홈페이지로 이동 (새 창)">
+    <span class="site-bar" aria-hidden="true"><i></i><i></i><i></i><span class="site-url">{{ e.url | replace("https://", "") | replace("http://", "") }}</span></span>
+    {%- if e.image %}<img src="{{ e.image }}" alt="{{ e.name }} 홈페이지 첫 화면" loading="lazy">{% endif %}
+    <span class="site-cap"><b>{{ e.name }}</b><span class="btn sm">홈페이지 바로가기 ↗</span></span>
+  </a>
+  {%- endfor %}
+</section>
+{%- endif %}
 
 <section id="partners" class="wrap sec">
   <div class="stack">

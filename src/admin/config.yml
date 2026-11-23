@@ -196,6 +196,18 @@ collections:
               - { label: 직위, name: role, widget: select, options: [이사장, 상임이사, 이사, 감사] }
               - { label: 이름, name: name, widget: string }
               - { label: 소속·약력, name: bio, widget: string, required: false }
+      - label: 위·수탁 기관 (네트워크 맨 위)
+        name: entrusted
+        file: src/_data/entrusted.json
+        fields:
+          - label: 기관
+            name: list
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: 기관 이름, name: name, widget: string }
+              - { label: 홈페이지 주소, name: url, widget: string }
+              - { label: 홈페이지 화면 사진, name: image, widget: image, hint: "가로로 긴 홈페이지 첫 화면 캡처" }
       - label: 유관·연계·협력 기관 (메인 배너·네트워크)
         name: partners
         file: src/_data/partners.json
