@@ -1,0 +1,9 @@
+{
+  "list": [
+    { "name": "경상남도", "url": "https://www.gyeongnam.go.kr", "logo": "" },
+    { "name": "창원특례시", "url": "https://www.changwon.go.kr", "logo": "" },
+    { "name": "국토교통부", "url": "https://www.molit.go.kr", "logo": "" },
+    { "name": "도시재생종합정보체계", "url": "https://www.city.go.kr", "logo": "" },
+    { "name": "건축공간연구원", "url": "https://www.auri.re.kr", "logo": "" }
+  ]
+}

@@ -1,0 +1,34 @@
+---
+layout: base.njk
+---
+{%- set listUrl = "/news/notice/" if category == "공지사항" else "/news/member/" %}
+{%- set coll = collections.notice if category == "공지사항" else collections.member %}
+<article class="read">
+  <div class="read-head">
+    <a href="{{ listUrl }}" class="muted" style="font-size: 14px">‹ {{ category }} 목록</a>
+    <span><span class="tag{% if category == '회원소식' %} member{% endif %}">{{ category }}</span></span>
+    <h1>{{ title }}</h1>
+    <span class="muted" style="font-size: 15px">{{ page.date | ymd }} · 사무국</span>
+  </div>
+
+  {%- if thumbnail %}<div class="cover"><img src="{{ thumbnail }}" alt=""></div>{% endif %}
+
+  <div class="content">{{ content | safe }}</div>
+
+  {%- if attachments and attachments.length %}
+  <div class="stack">
+    <b style="font-size: 15px">첨부파일</b>
+    {%- for f in attachments %}
+    <a href="{{ f.file }}" class="file" target="_blank" rel="noopener" download><span>{{ f.name or (f.file | replace("/uploads/", "")) }}</span><span>내려받기 ↓</span></a>
+    {%- endfor %}
+  </div>
+  {%- endif %}
+
+  <div class="list-top" style="margin-top: 16px">
+    {%- set prev = coll | getPreviousCollectionItem(page) %}
+    {%- set next = coll | getNextCollectionItem(page) %}
+    {%- if next %}<a href="{{ next.url }}" class="nb"><span>이전 글</span><b style="font-weight: 500">{{ next.data.title }}</b></a>{% endif %}
+    {%- if prev %}<a href="{{ prev.url }}" class="nb"><span>다음 글</span><b style="font-weight: 500">{{ prev.data.title }}</b></a>{% endif %}
+  </div>
+  <a href="{{ listUrl }}" class="btn line" style="align-self: center">목록으로</a>
+</article>

@@ -1,0 +1,31 @@
+---
+layout: base.njk
+---
+{#- 교육 공고 · 현장 사업 · 포럼 글 보기 -#}
+<article class="read">
+  <div class="read-head">
+    <a href="{{ backUrl }}" class="muted" style="font-size: 14px">‹ {{ kindLabel }}</a>
+    {%- if status %}<span><span class="st {% if status == '모집 중' or status == '신청 중' %}on{% else %}off{% endif %}">{{ status }}</span></span>{% endif %}
+    <h1>{{ title }}</h1>
+  </div>
+
+  {%- if image %}<div class="cover"><img src="{{ image }}" alt=""></div>{% endif %}
+
+  <dl class="meta-list">
+    {%- if place %}<dt>장소</dt><dd>{{ place }}</dd>{% endif %}
+    {%- if time %}<dt>일시</dt><dd>{{ page.date | ymd }} {{ time }}</dd>{% endif %}
+    {%- if period %}<dt>기간</dt><dd>{{ period }}</dd>{% endif %}
+    {%- if target %}<dt>대상</dt><dd>{{ target }}</dd>{% endif %}
+    {%- if region %}<dt>지역</dt><dd>{{ region }}</dd>{% endif %}
+    {%- if client %}<dt>발주</dt><dd>{{ client }}</dd>{% endif %}
+    {%- if apply_url %}<dt>신청</dt><dd><a href="{{ apply_url }}" target="_blank" rel="noopener" style="color: var(--accent)">신청하기 ↗</a></dd>{% endif %}
+  </dl>
+
+  <div class="content">{{ content | safe }}</div>
+
+  {%- if file %}
+  <a href="{{ file }}" class="file" target="_blank" rel="noopener" download><span>첨부 자료</span><span>내려받기 ↓</span></a>
+  {%- endif %}
+
+  <a href="{{ backUrl }}" class="btn line" style="align-self: center">목록으로</a>
+</article>

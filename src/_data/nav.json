@@ -1,0 +1,6 @@
+[
+  { "key": "about", "label": "법인소개", "url": "/about/" },
+  { "key": "business", "label": "주요사업", "url": "/business/" },
+  { "key": "network", "label": "네트워크", "url": "/network/" },
+  { "key": "news", "label": "소식", "url": "/news/" }
+]

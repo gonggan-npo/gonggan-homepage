@@ -1,0 +1,14 @@
+---
+layout: base.njk
+title: 회원소식
+section: news
+listKey: member
+coll: member
+pagination:
+  data: collections.member
+  size: 10
+  generatePageOnEmptyData: true
+permalink: "/news/member/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}"
+eleventyExcludeFromCollections: true
+---
+{% include "news-list.njk" %}

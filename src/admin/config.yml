@@ -1,0 +1,197 @@
+# 사단법인 공간 관리자 페이지 설정 (Decap CMS)
+# 관리자 페이지 주소: https://gonggan.org/admin/
+
+backend:
+  name: github
+  repo: OWNER/gonggan-homepage   # GitHub 아이디/저장소 이름
+  branch: main
+  base_url: https://AUTH-WORKER-URL  # GitHub 로그인 중계(Cloudflare Worker) 주소
+  commit_messages:
+    create: "새 글: {{collection}} \"{{slug}}\""
+    update: "수정: {{collection}} \"{{slug}}\""
+    delete: "삭제: {{collection}} \"{{slug}}\""
+    uploadMedia: "파일 올림: {{path}}"
+    deleteMedia: "파일 삭제: {{path}}"
+
+# 내 컴퓨터에서 미리 시험할 때만 쓰임 (npx decap-server)
+local_backend: true
+
+locale: ko
+site_url: https://gonggan.org
+display_url: https://gonggan.org
+logo_url: ""
+
+media_folder: src/uploads
+public_folder: /uploads
+
+# 글 파일 이름: 날짜-시각 (한글 제목도 문제없이 저장)
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  # ---------- 소식 ----------
+  - name: notice
+    label: 공지사항
+    label_singular: 공지
+    folder: src/news/notice
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}{{second}}"
+    summary: "{{title}} ({{date}})"
+    sortable_fields: [date, title]
+    fields:
+      - { label: 제목, name: title, widget: string }
+      - { label: 날짜, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY.MM.DD", time_format: false }
+      - { label: 목록 맨 위에 고정, name: pinned, widget: boolean, default: false, required: false }
+      - { label: 대표 사진, name: thumbnail, widget: image, required: false, hint: "목록과 메인 화면에 보이는 사진 (없어도 됩니다)" }
+      - { label: 본문, name: body, widget: markdown }
+      - label: 첨부파일
+        name: attachments
+        widget: list
+        required: false
+        fields:
+          - { label: 표시할 이름, name: name, widget: string, required: false }
+          - { label: 파일, name: file, widget: file }
+
+  - name: member
+    label: 회원소식
+    label_singular: 회원소식
+    folder: src/news/member
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}{{second}}"
+    summary: "{{title}} ({{date}})"
+    sortable_fields: [date, title]
+    fields:
+      - { label: 제목, name: title, widget: string }
+      - { label: 날짜, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY.MM.DD", time_format: false }
+      - { label: 대표 사진, name: thumbnail, widget: image, required: false }
+      - { label: 본문, name: body, widget: markdown }
+      - label: 첨부파일
+        name: attachments
+        widget: list
+        required: false
+        fields:
+          - { label: 표시할 이름, name: name, widget: string, required: false }
+          - { label: 파일, name: file, widget: file }
+
+  # ---------- 주요사업 ----------
+  - name: research
+    label: 연구·정책 자료
+    label_singular: 자료
+    folder: src/research
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}{{second}}"
+    summary: "[{{kind}}] {{title}}"
+    fields:
+      - { label: 제목, name: title, widget: string }
+      - { label: 분류, name: kind, widget: select, options: [연구보고서, 정책제안, 사례집, 기타], default: 연구보고서 }
+      - { label: 발간일, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY.MM.DD", time_format: false }
+      - { label: 한 줄 소개, name: summary, widget: string, required: false }
+      - { label: PDF 파일, name: file, widget: file, required: false }
+
+  - name: programs
+    label: 교육 프로그램·모집 공고
+    label_singular: 교육 공고
+    folder: src/programs
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}{{second}}"
+    summary: "[{{status}}] {{title}}"
+    fields:
+      - { label: 프로그램 이름, name: title, widget: string }
+      - { label: 상태, name: status, widget: select, options: [모집 중, 마감], default: 모집 중 }
+      - { label: 게시일, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY.MM.DD", time_format: false }
+      - { label: 기간, name: period, widget: string, required: false, hint: "예: 2026.03.02 ~ 03.20" }
+      - { label: 대상, name: target, widget: string, required: false }
+      - { label: 신청 링크, name: apply_url, widget: string, required: false, hint: "구글 설문 등 신청서 주소 (없으면 비워 두세요)" }
+      - { label: 사진, name: image, widget: image, required: false }
+      - { label: 첨부 자료, name: file, widget: file, required: false }
+      - { label: 내용, name: body, widget: markdown, required: false }
+
+  - name: projects
+    label: 현장지원·위탁 사업
+    label_singular: 사업 사례
+    folder: src/projects
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}{{second}}"
+    summary: "{{title}}"
+    fields:
+      - { label: 사업 이름, name: title, widget: string }
+      - { label: 등록일, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY.MM.DD", time_format: false }
+      - { label: 지역, name: region, widget: string, required: false }
+      - { label: 기간, name: period, widget: string, required: false }
+      - { label: 발주 기관, name: client, widget: string, required: false }
+      - { label: 대표 사진, name: image, widget: image, required: false }
+      - { label: 내용, name: body, widget: markdown, required: false }
+
+  # ---------- 네트워크 ----------
+  - name: events
+    label: 포럼·세미나
+    label_singular: 행사
+    folder: src/events
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}{{second}}"
+    summary: "[{{status}}] {{title}}"
+    fields:
+      - { label: 행사 이름, name: title, widget: string }
+      - { label: 상태, name: status, widget: select, options: [신청 중, 예정, 지난 행사], default: 예정 }
+      - { label: 행사 날짜, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY.MM.DD", time_format: false }
+      - { label: 시간, name: time, widget: string, required: false, hint: "예: 오후 2시 ~ 5시" }
+      - { label: 장소, name: place, widget: string, required: false }
+      - { label: 신청 링크, name: apply_url, widget: string, required: false }
+      - { label: 사진, name: image, widget: image, required: false }
+      - { label: 자료집 파일, name: file, widget: file, required: false }
+      - { label: 내용, name: body, widget: markdown, required: false }
+
+  # ---------- 고정 내용 ----------
+  - name: settings
+    label: 기본 정보·고정 내용
+    editor: { preview: false }
+    files:
+      - label: 기본 정보 (연락처·메인 문구)
+        name: site
+        file: src/_data/site.json
+        fields:
+          - { label: 법인 이름, name: name, widget: string }
+          - { label: 홈페이지 주소, name: url, widget: hidden }
+          - { label: 메인 슬로건, name: slogan, widget: text, hint: "줄바꿈이 그대로 화면에 보입니다" }
+          - { label: 메인 보조 문구, name: subcopy, widget: text }
+          - { label: 한 줄 소개, name: intro, widget: text }
+          - { label: 이사장, name: chair, widget: string }
+          - { label: 고유번호, name: regno, widget: string }
+          - { label: 주소, name: address, widget: string }
+          - { label: 이메일, name: email, widget: string }
+          - { label: 대중교통 안내, name: transit, widget: string, required: false }
+          - { label: 지도 링크, name: map_url, widget: string, required: false, hint: "네이버·카카오 지도에서 '공유' 주소를 붙여 넣으세요" }
+          - { label: 정관 PDF, name: articles_pdf, widget: file, required: false, hint: "발기인 날인면은 빼고 올려 주세요" }
+      - label: 이사장 인사말
+        name: greeting
+        file: src/_data/greeting.json
+        fields:
+          - { label: 제목, name: title, widget: string, required: false }
+          - { label: 이사장 사진, name: photo, widget: image, required: false }
+          - { label: 인사말 본문, name: body, widget: markdown, required: false }
+      - label: 임원 명단
+        name: officers
+        file: src/_data/officers.json
+        fields:
+          - { label: 표 아래 안내 문구, name: note, widget: string, required: false }
+          - label: 임원
+            name: list
+            widget: list
+            summary: "{{fields.role}} {{fields.name}}"
+            fields:
+              - { label: 직위, name: role, widget: select, options: [이사장, 상임이사, 이사, 감사] }
+              - { label: 이름, name: name, widget: string }
+              - { label: 소속·약력, name: bio, widget: string, required: false }
+      - label: 협력기관 (메인 배너·네트워크)
+        name: partners
+        file: src/_data/partners.json
+        fields:
+          - label: 기관
+            name: list
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: 기관 이름, name: name, widget: string }
+              - { label: 홈페이지 주소, name: url, widget: string }
+              - { label: 로고 이미지, name: logo, widget: image, required: false }

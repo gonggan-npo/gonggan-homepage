@@ -1,0 +1,106 @@
+---
+layout: base.njk
+title: 주요사업
+section: business
+permalink: /business/
+---
+<section class="ph">
+  <div class="wrap ph-in">
+    <span class="crumb">홈 › 주요사업</span>
+    <h1>주요사업</h1>
+    <p>지식과 실천을 잇는 여섯 가지 사업으로 경남의 공간을 다시 사람으로 채웁니다.</p>
+    <nav class="tabs" aria-label="주요사업 하위 메뉴">
+      <a href="#overview">사업 개요</a>
+      <a href="#research">연구·정책</a>
+      <a href="#edu">인재 양성·교육</a>
+      <a href="#field">현장지원·위탁</a>
+    </nav>
+  </div>
+</section>
+
+<section id="overview" class="wrap sec">
+  <div class="stack">
+    <p class="eyebrow">사업 개요</p>
+    <h2 class="h2">여섯 가지 핵심사업</h2>
+  </div>
+  <div class="list-top">
+    {%- for b in business %}
+    <div class="row"><span class="num">{{ loop.index }}</span><b>{{ b.name }}</b><p>{{ b.desc }}</p></div>
+    {%- endfor %}
+  </div>
+  <div class="stack" style="margin-top: 24px">
+    <p class="eyebrow">대표 사업</p>
+    <h2 class="h2" style="font-size: 28px">단계별로 키워 갈 세 가지</h2>
+  </div>
+  <div class="stages">
+    <div><span>1단계 · 기반 구축</span><b>경남 권역별 지역·공간 진단과 통합전략</b></div>
+    <div><span>2단계 · 시범·위탁사업</span><b>경남 청년 로컬 커리어 &amp; 프로젝트 Lab</b></div>
+    <div><span>3단계 · 모델 확산</span><b>경남 도시·농촌 연계 재생 시범사업</b></div>
+  </div>
+</section>
+
+<section id="research" class="wrap sec">
+  <div class="stack">
+    <p class="eyebrow">연구·정책</p>
+    <h2 class="h2">연구보고서와 정책제안</h2>
+  </div>
+  {%- if collections.research.length %}
+  <div class="scroll-x">
+    <table>
+      <thead><tr><th style="width: 120px">분류</th><th>제목</th><th style="width: 110px">발간</th><th style="width: 90px">자료</th></tr></thead>
+      <tbody>
+        {%- for r in collections.research %}
+        <tr>
+          <td><span class="tag">{{ r.data.kind }}</span></td>
+          <td><b>{{ r.data.title }}</b>{% if r.data.summary %}<br><span class="muted" style="font-size: 14px">{{ r.data.summary }}</span>{% endif %}</td>
+          <td class="muted">{{ r.date | ym }}</td>
+          <td>{% if r.data.file %}<a href="{{ r.data.file }}" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 500">PDF ↓</a>{% endif %}</td>
+        </tr>
+        {%- endfor %}
+      </tbody>
+    </table>
+  </div>
+  {%- else %}
+  <p class="empty">연구 자료를 준비하고 있습니다.</p>
+  {%- endif %}
+</section>
+
+<section id="edu" class="wrap sec">
+  <div class="stack">
+    <p class="eyebrow">인재 양성·교육</p>
+    <h2 class="h2">교육 프로그램과 모집 공고</h2>
+  </div>
+  {%- if collections.programs.length %}
+  <div class="cards">
+    {%- for p in collections.programs %}
+    <a href="{{ p.url }}" class="card">
+      <span class="st {% if p.data.status == '모집 중' %}on{% else %}off{% endif %}" style="align-self: flex-start">{{ p.data.status }}</span>
+      <h3>{{ p.data.title }}</h3>
+      <p class="muted">{% if p.data.period %}기간 {{ p.data.period }}{% endif %}{% if p.data.target %} · 대상 {{ p.data.target }}{% endif %}</p>
+    </a>
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <p class="empty">교육 프로그램을 준비하고 있습니다.</p>
+  {%- endif %}
+</section>
+
+<section id="field" class="wrap sec">
+  <div class="stack">
+    <p class="eyebrow">현장지원·위탁</p>
+    <h2 class="h2">현장에서 함께한 사업</h2>
+  </div>
+  {%- if collections.projects.length %}
+  <div class="tiles">
+    {%- for p in collections.projects %}
+    <a href="{{ p.url }}" class="tile">
+      <div class="ph-img">{% if p.data.image %}<img src="{{ p.data.image }}" alt="" loading="lazy">{% else %}사진 준비 중{% endif %}</div>
+      <b>{{ p.data.title }}</b>
+      <span class="muted" style="font-size: 14px">{{ [p.data.region, p.data.period, p.data.client] | select | join(" · ") }}</span>
+    </a>
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <p class="empty">현장 사업 사례를 준비하고 있습니다.</p>
+  {%- endif %}
+</section>

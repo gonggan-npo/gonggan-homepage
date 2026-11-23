@@ -1,0 +1,14 @@
+---
+layout: base.njk
+title: 소식
+section: news
+listKey: all
+coll: news
+pagination:
+  data: collections.news
+  size: 10
+  generatePageOnEmptyData: true
+permalink: "/news/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}"
+eleventyExcludeFromCollections: true
+---
+{% include "news-list.njk" %}

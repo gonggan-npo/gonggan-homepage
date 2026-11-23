@@ -1,0 +1,139 @@
+---
+layout: base.njk
+title: 사단법인 공간
+section: home
+---
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-text">
+      <p class="eyebrow">경남 도시재생 중간지원조직</p>
+      <h1>{{ site.slogan }}</h1>
+      <p class="sub">{{ site.subcopy }}</p>
+      <div class="btns">
+        <a href="/about/" class="btn">법인 소개 보기</a>
+        <a href="/business/" class="btn line">주요사업 보기</a>
+      </div>
+    </div>
+    <div class="hero-mark" aria-hidden="true"><span>空間</span><span>共間</span></div>
+  </div>
+</section>
+
+<!-- 비전 · 미션 · 핵심가치: 테두리 = 비전, 몸통 = 미션, 굽 = 핵심가치 -->
+<section class="wrap sec" id="vision" style="border-bottom: 0">
+  <div class="head-row">
+    <div class="stack">
+      <p class="eyebrow">비전 · 미션 · 핵심가치</p>
+      <h2 class="h2">공간이 빚는 그릇</h2>
+    </div>
+    <p class="muted" style="margin: 0; font-size: 15px; max-width: 30em">비전은 그릇의 테두리, 미션은 그릇에 담기는 일, 핵심가치는 그릇을 받치는 굽입니다.</p>
+  </div>
+  <div class="bowl">
+    <div class="rim"><span class="label">VISION</span><span class="v">사람이 머무는 공간, 함께 살아가는 지역</span></div>
+    <div class="body">
+      <span class="label">MISSION</span>
+      <div class="missions">
+        <div class="mission"><span class="tick" aria-hidden="true"></span><span class="dot">공간</span><h3>공간을 되살립니다</h3><p>도시재생 정책·계획·사업을 연구하고 기획해 비어 가는 공간에 다시 삶을 채웁니다.</p></div>
+        <div class="mission"><span class="tick" aria-hidden="true"></span><span class="dot">사람</span><h3>사람을 잇습니다</h3><p>주민, 행정, 전문가, 기업을 잇는 민관협력 중간지원 조직으로서 공동체를 회복합니다.</p></div>
+        <div class="mission"><span class="tick" aria-hidden="true"></span><span class="dot">지역</span><h3>지역을 키웁니다</h3><p>지역 인재를 기르고 국내외 지식을 나누며 지역경제 활성화와 균형발전에 기여합니다.</p></div>
+      </div>
+    </div>
+    <span class="stem" aria-hidden="true"></span>
+    <div class="foot">
+      <span class="label">CORE VALUES</span>
+      <div class="values">
+        <div class="value"><b>공공성</b><span>모두를 위한 그릇</span></div>
+        <div class="value"><b>전문성</b><span>단단한 그릇</span></div>
+        <div class="value"><b>연계성</b><span>함께 빚는 그릇</span></div>
+        <div class="value"><b>지속성</b><span>오래 쓰는 그릇</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" aria-label="SPACE의 의미">
+  <div class="wrap sec" style="border-bottom: 0">
+    <div class="stack">
+      <p class="eyebrow">空間, SPACE</p>
+      <h2 class="h2">다섯 글자에 담은 약속</h2>
+    </div>
+    <div class="space">
+      <div class="space-row"><span class="l">S</span><span class="w"><b>Sustainability</b><span>지속가능성</span></span><p>한 번의 사업으로 끝나지 않고, 지역에 경험과 역량이 쌓이게 합니다.</p></div>
+      <div class="space-row"><span class="l">P</span><span class="w"><b>Place</b><span>공공의 장소</span></span><p>누구에게나 열린 장소를 만들고, 그 공간이 지역사회의 공익으로 이어지게 합니다.</p></div>
+      <div class="space-row"><span class="l">A</span><span class="w"><b>Action</b><span>실행</span></span><p>연구에 머물지 않고 현장에서 직접 실천합니다.</p></div>
+      <div class="space-row"><span class="l">C</span><span class="w"><b>Community</b><span>공동체</span></span><p>주민, 행정, 전문가, 기업이 함께 지역을 빚습니다.</p></div>
+      <div class="space-row"><span class="l">E</span><span class="w"><b>Ecology</b><span>생태</span></span><p>사람과 자연, 도시와 농촌이 어우러지는 지역 생태계를 만듭니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="mint">
+  <div class="wrap sec" style="border-bottom: 0">
+    <div class="head-row">
+      <div class="stack">
+        <p class="eyebrow">주요사업</p>
+        <h2 class="h2">지식과 실천을 잇는 일</h2>
+      </div>
+      <a href="/business/" class="muted" style="font-size: 15px">사업 개요 보기 →</a>
+    </div>
+    <div class="cards">
+      {%- for b in business %}
+      <a href="{{ b.link }}" class="card">
+        <span class="card-head"><span class="num">{{ loop.index }}</span><h3>{{ b.name }}</h3></span>
+        <p>{{ b.desc }}</p>
+        <span class="tags">{% for t in b.tags %}<span class="tag">{{ t }}</span>{% endfor %}</span>
+        <span class="more">자세히 보기 →</span>
+      </a>
+      {%- endfor %}
+    </div>
+    <div class="band">
+      <div>
+        <h3>함께할 곳을 찾고 계신가요?</h3>
+        <p>지자체, 공공기관, 현장 활동가, 기업과 함께 경남의 공간을 다시 채웁니다. 협력과 회원 가입을 기다립니다.</p>
+      </div>
+      <a href="/network/" class="btn white">협력·회원 안내 →</a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap sec" style="border-bottom: 0">
+  <div class="head-row">
+    <div class="stack">
+      <p class="eyebrow">소식</p>
+      <h2 class="h2">공간이 하는 일</h2>
+    </div>
+    <a href="/news/" class="muted" style="font-size: 15px">전체 소식 보기 →</a>
+  </div>
+  {%- set latest = collections.news | sort(true, false, "date") | latest(3) %}
+  {%- if latest.length %}
+  <div class="news-cards">
+    {%- for p in latest %}
+    <a href="{{ p.url }}" class="news-card">
+      {%- if p.data.thumbnail %}
+      <div class="ph-img"><img src="{{ p.data.thumbnail }}" alt="" loading="lazy"></div>
+      {%- else %}
+      <div class="txt">{{ p.data.title }}</div>
+      {%- endif %}
+      <span class="tag{% if p.data.category == '회원소식' %} member{% endif %}">{{ p.data.category }}</span>
+      <span class="t">{{ p.data.title }}</span>
+      <span class="muted" style="font-size: 14px">{{ p.date | ymd }}</span>
+    </a>
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <p class="empty">아직 올라온 소식이 없습니다.</p>
+  {%- endif %}
+</section>
+
+<section aria-label="연계 기관" style="border-top: 1px solid var(--line)">
+  <div class="wrap" style="padding-top: 56px; padding-bottom: 56px; display: flex; flex-direction: column; gap: 20px">
+    <p style="margin: 0; font-size: 15px; font-weight: 700">연계 기관</p>
+    <div class="partners">
+      {%- for p in partners.list %}
+      <a href="{{ p.url }}" class="partner" target="_blank" rel="noopener">
+        {%- if p.logo %}<img src="{{ p.logo }}" alt="{{ p.name }}">{% else %}{{ p.name }}{% endif %}
+        <span aria-hidden="true" class="muted">↗</span>
+      </a>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

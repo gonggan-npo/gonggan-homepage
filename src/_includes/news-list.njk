@@ -1,0 +1,51 @@
+{#- 소식 목록 공통: listKey(all|notice|member), pagination.items 를 씀 -#}
+<section class="ph">
+  <div class="wrap ph-in">
+    <span class="crumb">홈 › 소식</span>
+    <h1>소식</h1>
+    <nav class="tabs" aria-label="소식 분류">
+      <a href="/news/"{% if listKey == "all" %} class="on" aria-current="page"{% endif %}>전체</a>
+      <a href="/news/notice/"{% if listKey == "notice" %} class="on" aria-current="page"{% endif %}>공지사항</a>
+      <a href="/news/member/"{% if listKey == "member" %} class="on" aria-current="page"{% endif %}>회원소식</a>
+    </nav>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top: 56px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 24px">
+  <div class="list-bar">
+    <span class="muted" style="font-size: 15px">전체 <b style="color: var(--ink)">{{ collections[coll].length }}</b>건</span>
+    <form class="search" role="search" onsubmit="return false">
+      <label for="q" class="sr-only">이 페이지에서 제목 찾기</label>
+      <input id="q" type="search" placeholder="제목으로 찾기" oninput="var v=this.value.trim().toLowerCase();document.querySelectorAll('[data-title]').forEach(function(el){el.hidden=v&&el.dataset.title.toLowerCase().indexOf(v)<0})">
+      <button type="submit">찾기</button>
+    </form>
+  </div>
+
+  {%- if pagination.items.length %}
+  <div class="list-top">
+    {%- for p in pagination.items %}
+    <a href="{{ p.url }}" class="item{% if p.data.pinned %} pin{% endif %}" data-title="{{ p.data.title }}">
+      {%- if p.data.thumbnail %}<span class="thumb"><img src="{{ p.data.thumbnail }}" alt="" loading="lazy"></span>{% endif %}
+      <span class="t">
+        <span><span class="tag{% if p.data.category == '회원소식' %} member{% endif %}">{{ p.data.category }}</span></span>
+        <b>{% if p.data.pinned %}<span class="pinmark">고정</span>{% endif %}{{ p.data.title }}</b>
+        {%- set ex = p.content | excerpt(90) %}{% if ex %}<span class="ex">{{ ex }}</span>{% endif %}
+      </span>
+      <span class="muted" style="font-size: 14px">{{ p.date | ymd }}</span>
+    </a>
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <p class="empty">아직 올라온 소식이 없습니다.</p>
+  {%- endif %}
+
+  {%- if pagination.pages.length > 1 %}
+  <nav class="pager" aria-label="페이지">
+    {%- if pagination.href.previous %}<a href="{{ pagination.href.previous }}" aria-label="이전 페이지">‹</a>{% endif %}
+    {%- for href in pagination.hrefs %}
+    {%- if loop.index0 == pagination.pageNumber %}<span class="on" aria-current="page">{{ loop.index }}</span>{% else %}<a href="{{ href }}">{{ loop.index }}</a>{% endif %}
+    {%- endfor %}
+    {%- if pagination.href.next %}<a href="{{ pagination.href.next }}" aria-label="다음 페이지">›</a>{% endif %}
+  </nav>
+  {%- endif %}
+</section>

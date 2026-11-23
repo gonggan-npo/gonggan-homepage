@@ -1,0 +1,7 @@
+{
+  "layout": "item.njk",
+  "section": "business",
+  "kindLabel": "현장지원·위탁",
+  "backUrl": "/business/#field",
+  "permalink": "/business/projects/{{ page.fileSlug }}/"
+}

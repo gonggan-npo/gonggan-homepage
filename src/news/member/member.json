@@ -1,0 +1,6 @@
+{
+  "layout": "post.njk",
+  "section": "news",
+  "category": "회원소식",
+  "permalink": "/news/member/{{ page.fileSlug }}/"
+}
