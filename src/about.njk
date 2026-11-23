@@ -57,7 +57,7 @@ permalink: /about/
     <p class="eyebrow">조직·임원</p>
     <h2 class="h2">함께 일하는 사람들</h2>
   </div>
-  <div class="org" role="img" aria-label="조직도: 총회 아래 이사회와 감사, 상임이사(예정), 사무국, 그리고 다섯 개 분과">
+  <div class="org" role="img" aria-label="조직도: 총회 아래 이사회와 감사, 상임이사, 사무국, 그리고 다섯 개 분과">
     <div class="box dk">총회</div>
     <div class="vline"></div>
     <div class="org-mid">
@@ -66,7 +66,7 @@ permalink: /about/
       <div class="box">감사 <small>(운영·회계)</small></div>
     </div>
     <div class="vline"></div>
-    <div class="box dash">상임이사 <small>(예정)</small></div>
+    <div class="box">상임이사</div>
     <div class="vline"></div>
     <div class="box mt">사무국</div>
     <div class="vline"></div>
@@ -78,6 +78,7 @@ permalink: /about/
       <div class="box">행정·지원</div>
     </div>
   </div>
+  {%- if officers.show %}
   <div class="scroll-x">
     <table>
       <thead><tr><th style="width: 160px">직위</th><th>이름</th><th>소속·약력</th></tr></thead>
@@ -89,6 +90,7 @@ permalink: /about/
     </table>
   </div>
   {%- if officers.note %}<p class="muted" style="margin: 0; font-size: 14px">{{ officers.note }}</p>{% endif %}
+  {%- endif %}
 </section>
 
 <section id="articles" class="wrap sec">

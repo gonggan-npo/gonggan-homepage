@@ -186,6 +186,7 @@ collections:
         name: officers
         file: src/_data/officers.json
         fields:
+          - { label: 홈페이지에 임원 명단 표 보이기, name: show, widget: boolean, default: false, required: false, hint: "끄면 조직도만 보이고 아래 명단 표는 숨겨집니다" }
           - { label: 표 아래 안내 문구, name: note, widget: string, required: false }
           - label: 임원
             name: list
