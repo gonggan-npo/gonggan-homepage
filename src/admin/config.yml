@@ -20,7 +20,9 @@ backend:
 locale: ko
 site_url: https://gonggan.org
 display_url: https://gonggan.org
-logo_url: ""
+logo:
+  src: /admin/logo.svg
+  show_in_header: true
 
 media_folder: src/uploads
 public_folder: /uploads

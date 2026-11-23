@@ -1,0 +1,282 @@
+/* 사단법인 공간 — 관리자 화면 테마
+   Decap CMS 기본 화면 위에 덧입히는 스타일입니다.
+   (Decap 업데이트로 화면 구조가 바뀌면 일부가 적용되지 않을 수 있지만, 기능에는 영향이 없습니다.) */
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+
+:root {
+  --g: #128571;        /* 법인 대표 초록 */
+  --g-dark: #0c6b5a;
+  --g-soft: #e8f4f1;
+  --g-ring: rgba(18, 133, 113, 0.18);
+  --bg: #f7f8f7;
+  --panel: #ffffff;
+  --line: #e7e9e8;
+  --line-strong: #d6dad8;
+  --ink: #1d2420;
+  --ink-2: #4b5551;
+  --ink-3: #8a938f;
+  --r: 10px;
+}
+
+/* ---------- 바탕, 글꼴 ---------- */
+body, #nc-root, #nc-root button, #nc-root input, #nc-root textarea, #nc-root select {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif !important;
+  letter-spacing: -0.005em;
+}
+body { background: var(--bg) !important; color: var(--ink); -webkit-font-smoothing: antialiased; }
+#nc-root ::selection { background: var(--g-ring); }
+
+/* ---------- 로그인 화면 ---------- */
+#nc-root [class*="-StyledAuthenticationPage"] {
+  background:
+    radial-gradient(900px 500px at 15% -10%, rgba(18, 133, 113, 0.14), transparent 60%),
+    radial-gradient(700px 500px at 110% 110%, rgba(18, 133, 113, 0.10), transparent 60%),
+    var(--bg);
+  justify-content: center; gap: 0 !important;
+}
+#nc-root [class*="-StyledAuthenticationPage"] > :first-child {
+  order: 0 !important; width: 76px !important; height: 76px !important; margin: 0 !important;
+  border-radius: 20px; overflow: hidden; box-shadow: 0 12px 32px rgba(18, 133, 113, 0.28);
+}
+#nc-root [class*="-StyledAuthenticationPage"] > :first-child img { width: 100% !important; height: 100% !important; display: block; }
+#nc-root [class*="-StyledAuthenticationPage"] > :last-child:not(a):not(button) { order: 9; margin-top: 40px; opacity: .25; filter: grayscale(1); transform: scale(.6); }
+#nc-root [class*="-StyledAuthenticationPage"]::before {
+  content: "사단법인 공간";
+  order: 1; margin-top: 18px;
+  font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink);
+}
+#nc-root [class*="-StyledAuthenticationPage"]::after {
+  content: "홈페이지 관리자";
+  order: 2; margin: 4px 0 30px;
+  font-size: 15px; color: var(--ink-3);
+}
+#nc-root [class*="-StyledAuthenticationPage"] > * { order: 3; }
+#nc-root [class*="-StyledAuthenticationPage"] > a { margin-top: 18px !important; font-size: 14px; color: var(--ink-3) !important; }
+#nc-root [class*="-LoginButton"] {
+  background: var(--ink) !important; color: #fff !important;
+  height: 46px !important; padding: 0 26px !important; border-radius: 12px !important;
+  font-size: 15px !important; font-weight: 600 !important;
+  box-shadow: 0 6px 18px rgba(29, 36, 32, 0.18) !important;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s;
+}
+#nc-root [class*="-LoginButtonIcon"] { display: none !important; }
+#nc-root [class*="-LoginButton"] { justify-content: center; min-width: 220px; }
+#nc-root [class*="-LoginButton"]:hover { background: #000 !important; transform: translateY(-1px); box-shadow: 0 10px 24px rgba(29, 36, 32, 0.22) !important; }
+
+/* ---------- 상단 바 ---------- */
+#nc-root [class*="-AppHeader-"] {
+  background: rgba(255, 255, 255, 0.86) !important;
+  -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px);
+  box-shadow: none !important; border-bottom: 1px solid var(--line);
+}
+#nc-root [class*="-AppHeaderContent"] { max-width: none !important; padding: 0 20px 0 24px !important; min-height: 56px; }
+#nc-root [class*="-AppHeaderLogo"] { display: flex !important; align-items: center; margin: 0 22px 0 0 !important; padding: 0 !important; }
+#nc-root [class*="-AppHeaderLogo"] img { width: 28px !important; height: 28px !important; padding: 0 !important; max-height: none !important; border-radius: 8px; object-fit: cover; }
+#nc-root [class*="-AppHeaderLogo"]::after { content: "사단법인 공간"; margin-left: 10px; font-size: 15px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+#nc-root [class*="-AppHeaderButton-"] {
+  height: 34px !important; margin: 11px 2px !important; padding: 0 12px !important;
+  border-radius: 8px !important; border: 0 !important;
+  font-size: 14px !important; font-weight: 500 !important; color: var(--ink-2) !important;
+  transition: background .15s, color .15s;
+}
+#nc-root [class*="-AppHeaderButton-"]:hover { background: #f0f2f1 !important; color: var(--ink) !important; }
+#nc-root .header-link-active { background: var(--g-soft) !important; color: var(--g) !important; font-weight: 600 !important; }
+#nc-root [class*="-AppHeaderButton-"] [class*="-IconWrapper"] svg { width: 18px !important; height: 18px !important; }
+#nc-root [class*="-AppHeaderButton-"] [class*="-IconWrapper"] { margin-right: 6px !important; }
+#nc-root .header-link-active svg { color: var(--g) !important; }
+#nc-root [class*="-AppHeaderQuickNewButton"] {
+  background: var(--g) !important; color: #fff !important;
+  height: 34px !important; padding: 0 30px 0 14px !important; border-radius: 8px !important;
+  font-size: 14px !important; font-weight: 600 !important; box-shadow: none !important;
+}
+#nc-root [class*="-AppHeaderQuickNewButton"]:hover { background: var(--g-dark) !important; }
+#nc-root [class*="-AppHeaderSiteLink"], #nc-root [class*="-AppHeaderTestRepoIndicator"] {
+  font-size: 14px !important; color: var(--ink-3) !important; border-radius: 8px; padding: 6px 10px !important;
+}
+#nc-root [class*="-AppHeaderSiteLink"]:hover { color: var(--g) !important; background: var(--g-soft); }
+#nc-root [class*="-AvatarDropdownButton"] { margin-left: 4px; }
+#nc-root [class*="-AvatarPlaceholderIcon"], #nc-root [class*="-avatarImage"] {
+  width: 32px !important; height: 32px !important; border-radius: 50% !important; box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--line) !important;
+}
+
+/* ---------- 목록 화면: 왼쪽 메뉴 ---------- */
+#nc-root [class*="-AppMainContainer"] { max-width: 1280px !important; padding: 0 28px; }
+#nc-root [class*="-CollectionContainer"] { margin: 28px 0 !important; }
+#nc-root [class*="-SidebarContainer"] {
+  background: transparent !important; box-shadow: none !important; border-radius: 0 !important;
+  width: 248px !important; padding: 0 !important; top: 84px !important;
+}
+#nc-root [class*="-SidebarHeading"] {
+  font-size: 12px !important; font-weight: 600 !important; color: var(--ink-3) !important;
+  text-transform: uppercase; letter-spacing: 0.04em; padding: 0 12px !important; margin: 14px 0 8px !important;
+}
+#nc-root [class*="-SearchContainer"] { margin: 0 0 6px !important; padding: 0 !important; order: -1; }
+#nc-root [class*="-SidebarContainer"] { display: flex !important; flex-direction: column; }
+#nc-root [class*="-InputContainer"] {
+  background: var(--panel) !important; border: 1px solid var(--line) !important; border-radius: var(--r) !important;
+  transition: border-color .15s, box-shadow .15s;
+}
+#nc-root [class*="-InputContainer"]:focus-within { border-color: var(--g) !important; box-shadow: 0 0 0 4px var(--g-ring) !important; }
+#nc-root [class*="-SearchInput"] { background: transparent !important; font-size: 14px !important; height: 38px !important; }
+#nc-root [class*="-SidebarNavList"] { margin: 0 !important; }
+#nc-root [class*="-SidebarNavLink"] {
+  display: flex !important; align-items: center; gap: 10px;
+  margin: 1px 0 !important; padding: 8px 12px !important; border: 0 !important; border-radius: 8px !important;
+  font-size: 14.5px !important; font-weight: 500 !important; color: var(--ink-2) !important;
+  transition: background .15s, color .15s;
+}
+#nc-root [class*="-SidebarNavLink"]:hover { background: #eef0ef !important; color: var(--ink) !important; }
+#nc-root .sidebar-active {
+  background: var(--panel) !important; color: var(--g) !important; font-weight: 600 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px var(--line) !important; border-left: 0 !important;
+}
+#nc-root [class*="-SidebarNavLink"] [class*="-IconWrapper"] { margin: 0 !important; opacity: .7; }
+#nc-root .sidebar-active [class*="-IconWrapper"] { opacity: 1; color: var(--g); }
+
+/* ---------- 목록 화면: 본문 ---------- */
+#nc-root [class*="-CollectionMain"] { padding-left: 280px !important; max-width: none !important; }
+#nc-root [class*="-CollectionTopContainer"] {
+  background: transparent !important; box-shadow: none !important; padding: 0 !important; margin-bottom: 14px !important;
+}
+#nc-root [class*="-CollectionTopRow"] { align-items: center; }
+#nc-root [class*="-CollectionTopHeading"] { font-size: 26px !important; font-weight: 700 !important; letter-spacing: -0.02em; color: var(--ink) !important; }
+#nc-root [class*="-CollectionTopNewButton"] {
+  background: var(--g) !important; color: #fff !important; border-radius: 9px !important;
+  height: 38px !important; padding: 0 18px !important; font-size: 14px !important; font-weight: 600 !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.15) !important;
+  transition: background .15s, transform .15s;
+}
+#nc-root [class*="-CollectionTopNewButton"]:hover { background: var(--g-dark) !important; transform: translateY(-1px); }
+#nc-root [class*="-CollectionTopDescription"] { color: var(--ink-3) !important; font-size: 14px !important; }
+#nc-root [class*="-CollectionControlsContainer"] { margin: 0 0 10px !important; max-width: none !important; }
+#nc-root [class*="-ViewControlsButton"] { border-radius: 7px !important; color: var(--ink-3) !important; }
+#nc-root [class*="-ViewControlsButton"]:hover { background: #eef0ef !important; }
+#nc-root [class*="-ControlButton"] { color: var(--ink-2) !important; font-weight: 500 !important; border-radius: 8px !important; }
+
+/* 글 목록: 줄 형태 카드 */
+#nc-root [class*="-ListCard-"], #nc-root [class$="-ListCard"] {
+  background: var(--panel) !important; border: 1px solid var(--line) !important; border-radius: 0 !important;
+  margin: -1px 0 0 !important; box-shadow: none !important; transition: background .12s;
+}
+#nc-root li[class*="-ListCard"]:first-of-type { border-radius: 12px 12px 0 0 !important; }
+#nc-root li[class*="-ListCard"]:last-of-type { border-radius: 0 0 12px 12px !important; }
+#nc-root li[class*="-ListCard"]:only-of-type { border-radius: 12px !important; }
+#nc-root [class*="-ListCard"]:hover { background: #fbfcfb !important; }
+#nc-root [class*="-ListCardLink"] { padding: 14px 18px !important; display: block; }
+#nc-root [class*="-ListCardTitle"] { font-size: 15px !important; font-weight: 500 !important; color: var(--ink) !important; }
+#nc-root [class*="-ListCard"]:hover [class*="-ListCardTitle"] { color: var(--g) !important; }
+#nc-root [class*="-CollectionLabel"] { color: var(--ink-3) !important; font-size: 12px !important; }
+#nc-root [class*="-GridCard-"], #nc-root [class$="-GridCard"] {
+  border: 1px solid var(--line) !important; border-radius: 12px !important; box-shadow: none !important; overflow: hidden;
+  transition: box-shadow .15s, transform .15s;
+}
+#nc-root [class*="-GridCard"]:hover { box-shadow: 0 10px 28px rgba(20, 40, 34, .08) !important; transform: translateY(-2px); }
+#nc-root [class*="-NoEntriesMessage"] {
+  margin-top: 8px !important; padding: 48px 0 !important; text-align: center;
+  border: 1px dashed var(--line-strong); border-radius: 12px; color: var(--ink-3) !important; background: rgba(255,255,255,.6);
+}
+
+/* ---------- 편집 화면 ---------- */
+#nc-root [class*="-ToolbarContainer"] {
+  box-shadow: none !important; border-bottom: 1px solid var(--line); height: 60px !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+}
+#nc-root [class*="-toolbarSection"] { border-color: var(--line) !important; }
+#nc-root [class*="-BackArrow"] { color: var(--ink-2) !important; }
+#nc-root [class*="-BackCollection"] { color: var(--ink-2) !important; font-size: 14px !important; }
+#nc-root [class*="-textBadgeSuccess"] { color: var(--g) !important; }
+#nc-root [class*="-PublishButton"], #nc-root [class*="-SaveButton"] {
+  background: var(--g) !important; color: #fff !important; border-radius: 9px !important;
+  height: 36px !important; font-weight: 600 !important; font-size: 14px !important; box-shadow: none !important;
+}
+#nc-root [class*="-PublishButton"]:hover, #nc-root [class*="-SaveButton"]:hover { background: var(--g-dark) !important; }
+#nc-root [class*="-DeleteButton"] { border-radius: 9px !important; }
+#nc-root [class*="-EditorContainer"] { background: var(--bg) !important; }
+#nc-root [class*="-StyledSplitPane"] { background: var(--bg) !important; }
+#nc-root .Resizer, #nc-root .Resizer.vertical {
+  background: var(--line) !important; width: 1px !important; border: 0 !important; box-shadow: none !important;
+}
+#nc-root .Resizer::before, #nc-root .Resizer::after { background: transparent !important; border-color: transparent !important; }
+#nc-root .Resizer:hover { background: var(--g) !important; }
+#nc-root [class*="-ControlPaneContainer"] { padding: 8px 32px 120px !important; font-size: 15px; }
+#nc-root [class*="-ControlTopbar"] { background: transparent !important; }
+#nc-root [class*="-ControlPaneContainer"] > div { max-width: 760px; margin: 0 auto; }
+#nc-root [class*="-PreviewPaneContainer"]:not([class*="-ControlPaneContainer"]) { background: #fff !important; }
+
+/* 입력 칸: 이름은 위에 작게, 칸은 둥글게 */
+#nc-root [class*="-ControlContainer"] { margin-top: 22px !important; }
+#nc-root [class*="-FieldLabel"] {
+  background: transparent !important; border: 0 !important; padding: 0 2px !important; margin: 0 0 6px !important;
+  font-size: 13.5px !important; font-weight: 600 !important; color: var(--ink-2) !important; text-transform: none !important;
+  box-shadow: none !important; transition: color .15s !important;
+}
+#nc-root [class*="-ControlContainer"]:focus-within [class*="-FieldLabel"] { color: var(--g) !important; }
+#nc-root [class*="-ControlContainer"] input:not([type="checkbox"]):not([type="radio"]),
+#nc-root [class*="-ControlContainer"] textarea,
+#nc-root [class*="-ControlContainer"] select,
+#nc-root [class*="-ControlContainer"] > div[class*="-css"] {
+  border-radius: var(--r) !important;
+}
+#nc-root [class*="-ControlContainer"] > input,
+#nc-root [class*="-ControlContainer"] > textarea,
+#nc-root [class*="-ControlContainer"] > div > input,
+#nc-root [class*="-DateTimeControl"],
+#nc-root [class*="-FileWidget"],
+#nc-root [class*="-ControlContainer"] > [class*="-ToggleContainer"] {
+  background: var(--panel) !important; border: 1px solid var(--line-strong) !important; border-radius: var(--r) !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,.03);
+  transition: border-color .15s, box-shadow .15s;
+}
+#nc-root [class*="-ControlContainer"] input:focus,
+#nc-root [class*="-ControlContainer"] textarea:focus,
+#nc-root [class*="-DateTimeControl"]:focus-within {
+  border-color: var(--g) !important; box-shadow: 0 0 0 4px var(--g-ring) !important; outline: none !important;
+}
+#nc-root [class*="-ControlContainer"] > input { padding: 12px 14px !important; font-size: 15px !important; }
+#nc-root [class*="-ControlHint"] { color: var(--ink-3) !important; font-size: 13px !important; margin-top: 6px !important; }
+#nc-root [class*="-FileWidgetButton"], #nc-root [class*="-Buttons"] button {
+  background: #f2f4f3 !important; color: var(--ink) !important; border: 1px solid var(--line) !important;
+  border-radius: 8px !important; padding: 6px 12px !important; font-size: 13.5px !important; font-weight: 500 !important;
+}
+#nc-root [class*="-FileWidgetButton"]:hover, #nc-root [class*="-Buttons"] button:hover { background: var(--g-soft) !important; color: var(--g) !important; border-color: transparent !important; }
+#nc-root [class*="-ToggleBackground"] { border-radius: 999px !important; }
+#nc-root button[role="switch"][aria-checked="false"] > [class*="-ToggleBackground"] { background: #d9dedc !important; }
+#nc-root button[role="switch"][aria-checked="true"] > [class*="-ToggleBackground"],
+#nc-root [class*="-ToolbarToggle"] [class*="-ToggleBackground"] { background: var(--g) !important; }
+#nc-root [class*="-ToggleHandle"] { box-shadow: 0 1px 3px rgba(0,0,0,.2) !important; }
+
+/* 본문(글쓰기) 편집기 */
+#nc-root [class*="-EditorControlBar"] {
+  background: #fff !important; border: 1px solid var(--line-strong) !important; border-bottom: 1px solid var(--line) !important;
+  border-radius: var(--r) var(--r) 0 0 !important; padding: 6px 8px !important; top: 60px !important;
+}
+#nc-root [class*="-StyledToolbarButton"] { border-radius: 6px !important; color: var(--ink-2) !important; }
+#nc-root [class*="-StyledToolbarButton"]:hover { background: #f0f2f1 !important; color: var(--ink) !important; }
+#nc-root [class*="-ToolbarToggleLabel"] { font-size: 13px !important; color: var(--ink-3) !important; }
+#nc-root [class*="-EditorControlBar"] + div, #nc-root [data-slate-editor="true"] {
+  border-color: var(--line-strong) !important; border-radius: 0 0 var(--r) var(--r) !important; background: #fff !important;
+  font-size: 16px !important; line-height: 1.75 !important;
+}
+
+/* 목록형 입력(첨부파일 등) */
+#nc-root [class*="-TopBarContainer"] { background: #f4f6f5 !important; border: 1px solid var(--line) !important; border-radius: var(--r) !important; }
+#nc-root [class*="-AddButton"] { background: var(--g-soft) !important; color: var(--g) !important; border-radius: 8px !important; font-weight: 600 !important; }
+#nc-root [class*="-AddButton"]:hover { background: var(--g) !important; color: #fff !important; }
+
+/* 오른쪽 위 둥근 버튼(미리보기 등) */
+#nc-root [class*="-EditorToggle"] {
+  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 0 0 1px var(--line) !important; color: var(--ink-2) !important;
+}
+#nc-root [class*="-EditorToggle"]:hover { color: var(--g) !important; }
+
+/* ---------- 미디어 창, 대화상자 ---------- */
+#nc-root [class*="-StyledModal"], .ReactModal__Content { border-radius: 16px !important; }
+.ReactModal__Overlay { background: rgba(20, 28, 24, 0.42) !important; -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+
+/* ---------- 휴대폰 ---------- */
+@media (max-width: 799px) {
+  #nc-root [class*="-AppHeaderLogo"]::after { display: none; }
+  #nc-root [class*="-AppMainContainer"] { padding: 0 14px; }
+  #nc-root [class*="-CollectionMain"] { padding-left: 0 !important; }
+}
