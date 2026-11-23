@@ -21,8 +21,8 @@ permalink: /contact/
           <input type="text" name="name" maxlength="50" autocomplete="name" required>
         </label>
         <label class="cf-field">
-          <span>연락처</span>
-          <input type="tel" name="phone" maxlength="40" autocomplete="tel" placeholder="010-0000-0000">
+          <span>연락처 <em>필수</em></span>
+          <input type="tel" name="phone" maxlength="40" autocomplete="tel" required>
         </label>
       </div>
       <label class="cf-field">
@@ -46,7 +46,7 @@ permalink: /contact/
 
       <div class="cf-agree">
         <p><b>개인정보 수집·이용 안내</b><br>
-        수집 항목: 작성자, 연락처(선택), 이메일 · 이용 목적: 문의 답변 · 보유 기간: 답변 완료 후 1년, 이후 파기<br>
+        수집 항목: 작성자, 연락처, 이메일 · 이용 목적: 문의 답변 · 보유 기간: 답변 완료 후 1년, 이후 파기<br>
         동의하지 않으실 수 있으며, 이 경우 양식 대신 이메일({{ site.email }})로 문의해 주세요. <a href="/privacy/">개인정보처리방침</a></p>
         <label class="cf-check"><input type="checkbox" name="agree" value="yes" required> 위 내용에 동의합니다. <em>필수</em></label>
       </div>
@@ -72,7 +72,7 @@ permalink: /contact/
   function say(text, ok) { msg.textContent = text; msg.className = "cf-msg " + (ok ? "ok" : "err"); }
   f.addEventListener("submit", async function (e) {
     e.preventDefault();
-    var need = ["name", "email", "subject", "message"];
+    var need = ["name", "phone", "email", "subject", "message"];
     for (var i = 0; i < need.length; i++) {
       if (!f[need[i]].value.trim()) { say("필수 항목을 모두 입력해 주세요."); f[need[i]].focus(); return; }
     }

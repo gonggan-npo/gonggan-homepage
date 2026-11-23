@@ -50,7 +50,7 @@ async function handleContact(request, env) {
   }
 
   if (get("agree") !== "yes") return json({ ok: false, error: "개인정보 수집·이용에 동의해 주세요." }, 400);
-  for (const k of ["name", "subject", "email", "message"]) {
+  for (const k of ["name", "subject", "phone", "email", "message"]) {
     if (!data[k]) return json({ ok: false, error: "필수 항목을 모두 입력해 주세요." }, 400);
   }
   for (const [k, max] of Object.entries(LIMITS)) {
@@ -74,7 +74,7 @@ async function handleContact(request, env) {
     "이 메일에 '답장'하면 문의하신 분께 바로 회신됩니다.",
     "",
     `작성자: ${data.name}`,
-    `연락처: ${data.phone || "-"}`,
+    `연락처: ${data.phone}`,
     `이메일: ${data.email}`,
     `제목: ${data.subject}`,
     `보낸 시각: ${sentAt}`,
