@@ -3,7 +3,7 @@ layout: base.njk
 title: 사단법인 공간
 section: home
 ---
-<section class="hero">
+<section class="hero{% if images.hero %} has-img{% endif %}"{% if images.hero %} style="--img: url('{{ images.hero }}')"{% endif %}>
   <div class="wrap hero-in">
     <div class="hero-text">
       <p class="eyebrow">경상남도 도시재생 비영리법인</p>

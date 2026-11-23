@@ -164,6 +164,15 @@ collections:
           - { label: 대중교통 안내, name: transit, widget: string, required: false }
           - { label: 지도 링크, name: map_url, widget: string, required: false, hint: "네이버·카카오 지도에서 '공유' 주소를 붙여 넣으세요" }
           - { label: 정관 PDF, name: articles_pdf, widget: file, required: false, hint: "발기인 날인면은 빼고 올려 주세요" }
+      - label: 대표 사진 (배경)
+        name: images
+        file: src/_data/images.json
+        fields:
+          - { label: 메인 첫 화면 배경, name: hero, widget: image, required: false, hint: "가로 사진 (1920×1080 정도). 왼쪽은 글자가 올라가 흐리게 처리됩니다" }
+          - { label: 법인소개 상단, name: about, widget: image, required: false }
+          - { label: 주요사업 상단, name: business, widget: image, required: false }
+          - { label: 네트워크 상단, name: network, widget: image, required: false }
+          - { label: 소식 상단, name: news, widget: image, required: false }
       - label: 이사장 인사말
         name: greeting
         file: src/_data/greeting.json

@@ -1,5 +1,5 @@
 {#- 소식 목록 공통: listKey(all|notice|member), pagination.items 를 씀 -#}
-<section class="ph">
+<section class="ph{% if images.news %} has-img{% endif %}"{% if images.news %} style="--img: url('{{ images.news }}')"{% endif %}>
   <div class="wrap ph-in">
     <span class="crumb">홈 › 소식</span>
     <h1>소식</h1>

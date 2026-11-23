@@ -4,7 +4,7 @@ title: 법인소개
 section: about
 permalink: /about/
 ---
-<section class="ph">
+<section class="ph{% if images.about %} has-img{% endif %}"{% if images.about %} style="--img: url('{{ images.about }}')"{% endif %}>
   <div class="wrap ph-in">
     <span class="crumb">홈 › 법인소개</span>
     <h1>법인소개</h1>

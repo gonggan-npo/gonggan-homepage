@@ -4,7 +4,7 @@ title: 주요사업
 section: business
 permalink: /business/
 ---
-<section class="ph">
+<section class="ph{% if images.business %} has-img{% endif %}"{% if images.business %} style="--img: url('{{ images.business }}')"{% endif %}>
   <div class="wrap ph-in">
     <span class="crumb">홈 › 주요사업</span>
     <h1>주요사업</h1>
