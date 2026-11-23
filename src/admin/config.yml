@@ -3,7 +3,7 @@
 
 backend:
   name: github
-  repo: OWNER/gonggan-homepage   # GitHub 아이디/저장소 이름
+  repo: gonggan-npo/gonggan-homepage
   branch: main
   base_url: https://AUTH-WORKER-URL  # GitHub 로그인 중계(Cloudflare Worker) 주소
   commit_messages:
