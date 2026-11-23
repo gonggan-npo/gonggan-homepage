@@ -3,5 +3,5 @@
   "section": "network",
   "kindLabel": "포럼·세미나",
   "backUrl": "/network/#forum",
-  "permalink": "/network/events/{{ page.fileSlug }}/"
+  "permalink": "/network/events/{{ page.inputPath | basename }}/"
 }

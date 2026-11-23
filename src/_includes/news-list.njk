@@ -15,16 +15,19 @@
   <div class="list-bar">
     <span class="muted" style="font-size: 15px">전체 <b style="color: var(--ink)">{{ collections[coll].length }}</b>건</span>
     <form class="search" role="search" onsubmit="return false">
-      <label for="q" class="sr-only">이 페이지에서 제목 찾기</label>
-      <input id="q" type="search" placeholder="제목으로 찾기" oninput="var v=this.value.trim().toLowerCase();document.querySelectorAll('[data-title]').forEach(function(el){el.hidden=v&&el.dataset.title.toLowerCase().indexOf(v)<0})">
+      <label for="q" class="sr-only">제목으로 찾기</label>
+      <input id="q" type="search" placeholder="제목으로 찾기" oninput="newsSearch(this.value)">
       <button type="submit">찾기</button>
     </form>
   </div>
 
+  {%- set start = pagination.pageNumber * pagination.size %}
   {%- if pagination.items.length %}
   <div class="list-top">
-    {%- for p in pagination.items %}
-    <a href="{{ p.url }}" class="item{% if p.data.pinned %} pin{% endif %}" data-title="{{ p.data.title }}">
+    {#- 검색이 모든 페이지의 글을 찾을 수 있도록 전체 목록을 넣고, 현재 페이지 글만 보여 줌 #}
+    {%- for p in collections[coll] %}
+    {%- set cur = loop.index0 >= start and loop.index0 < start + pagination.size %}
+    <a href="{{ p.url }}" class="item{% if p.data.pinned %} pin{% endif %}" data-title="{{ p.data.title }}"{% if cur %} data-cur{% else %} hidden{% endif %}>
       {%- if p.data.thumbnail %}<span class="thumb"><img src="{{ p.data.thumbnail }}" alt="" loading="lazy"></span>{% endif %}
       <span class="t">
         <span><span class="tag{% if p.data.category == '회원소식' %} member{% endif %}">{{ p.data.category }}</span></span>
@@ -35,12 +38,13 @@
     </a>
     {%- endfor %}
   </div>
+  <p class="empty" id="no-result" hidden>찾는 제목의 글이 없습니다.</p>
   {%- else %}
   <p class="empty">아직 올라온 소식이 없습니다.</p>
   {%- endif %}
 
   {%- if pagination.pages.length > 1 %}
-  <nav class="pager" aria-label="페이지">
+  <nav class="pager" id="pager" aria-label="페이지">
     {%- if pagination.href.previous %}<a href="{{ pagination.href.previous }}" aria-label="이전 페이지">‹</a>{% endif %}
     {%- for href in pagination.hrefs %}
     {%- if loop.index0 == pagination.pageNumber %}<span class="on" aria-current="page">{{ loop.index }}</span>{% else %}<a href="{{ href }}">{{ loop.index }}</a>{% endif %}
@@ -49,3 +53,15 @@
   </nav>
   {%- endif %}
 </section>
+<script>
+function newsSearch(q) {
+  var v = q.trim().toLowerCase(), n = 0;
+  document.querySelectorAll(".list-top .item").forEach(function (el) {
+    var show = v ? el.dataset.title.toLowerCase().indexOf(v) >= 0 : el.hasAttribute("data-cur");
+    el.hidden = !show; if (show) n++;
+  });
+  var nr = document.getElementById("no-result"), pg = document.getElementById("pager");
+  if (nr) nr.hidden = n > 0;
+  if (pg) pg.hidden = !!v;
+}
+</script>

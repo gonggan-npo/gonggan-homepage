@@ -36,6 +36,9 @@ module.exports = function (eleventyConfig) {
     return text.length > len ? text.slice(0, len) + "…" : text;
   });
 
+  // 주소에 쓸 파일 이름 (날짜 포함, 겹치지 않게)
+  eleventyConfig.addFilter("basename", (p) => String(p).split("/").pop().replace(/\.[^.]+$/, ""));
+
   // 앞에서 n개만
   eleventyConfig.addFilter("latest", (arr, n) => (arr || []).slice(0, n));
 

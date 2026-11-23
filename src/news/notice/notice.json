@@ -2,5 +2,5 @@
   "layout": "post.njk",
   "section": "news",
   "category": "공지사항",
-  "permalink": "/news/notice/{{ page.fileSlug }}/"
+  "permalink": "/news/notice/{{ page.inputPath | basename }}/"
 }

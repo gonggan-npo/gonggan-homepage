@@ -3,5 +3,5 @@
   "section": "business",
   "kindLabel": "인재 양성·교육",
   "backUrl": "/business/#edu",
-  "permalink": "/business/programs/{{ page.fileSlug }}/"
+  "permalink": "/business/programs/{{ page.inputPath | basename }}/"
 }
