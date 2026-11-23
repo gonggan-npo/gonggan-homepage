@@ -31,7 +31,7 @@
     ".tile", ".list-top .item", ".step", ".greet .ph-img", ".greet .txt",
     ".mini-rim", ".mini-missions > *", ".chips", ".org-chart", ".org-units > *",
     ".facts", ".map", ".stages > *", ".biz-list > *", ".read-head", ".read .content",
-    ".events > *", ".table-wrap", ".join", ".h2"
+    ".events > *", ".table-wrap", ".join", ".h2", ".flags > *", ".road-step", ".biz-item"
   ];
   var hero = document.querySelector(".hero");
   var curtain = document.querySelector(".curtain");

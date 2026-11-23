@@ -11,9 +11,10 @@ permalink: /business/
     <p>지식과 실천을 잇는 여섯 가지 사업으로 경남의 공간을 다시 사람으로 채웁니다.</p>
     <nav class="tabs" aria-label="주요사업 하위 메뉴">
       <a href="#overview">사업 개요</a>
-      <a href="#research">연구·정책</a>
-      <a href="#edu">인재 양성·교육</a>
-      <a href="#field">현장지원·위탁</a>
+      <a href="#core">핵심사업</a>
+      <a href="#flagship">대표 사업</a>
+      <a href="#roadmap">로드맵</a>
+      <a href="#research">자료·공고·사례</a>
     </nav>
   </div>
 </section>
@@ -25,17 +26,77 @@ permalink: /business/
   </div>
   <div class="list-top">
     {%- for b in business %}
-    <div class="row"><span class="num">{{ loop.index }}</span><b>{{ b.name }}</b><p>{{ b.desc }}</p></div>
+    <a href="#biz-{{ loop.index }}" class="row row-link"><span class="num">{{ loop.index }}</span><b>{{ b.name }}</b><p>{{ b.desc }}</p><span class="go" aria-hidden="true">↓</span></a>
     {%- endfor %}
   </div>
-  <div class="stack" style="margin-top: 24px">
-    <p class="eyebrow">대표 사업</p>
-    <h2 class="h2" style="font-size: 28px">단계별로 키워 갈 세 가지</h2>
+</section>
+
+<section id="core" class="wrap sec">
+  <div class="stack">
+    <p class="eyebrow">핵심사업</p>
+    <h2 class="h2">무엇을 하나요</h2>
   </div>
-  <div class="stages">
-    <div><span>1단계 · 기반 구축</span><b>경남 권역별 지역·공간 진단과 통합전략</b></div>
-    <div><span>2단계 · 시범·위탁사업</span><b>경남 청년 로컬 커리어 &amp; 프로젝트 Lab</b></div>
-    <div><span>3단계 · 모델 확산</span><b>경남 도시·농촌 연계 재생 시범사업</b></div>
+  <div class="biz-list">
+    {%- for c in bizplan.core %}
+    <article class="biz" id="biz-{{ loop.index }}">
+      <div class="biz-head">
+        <span class="num">{{ loop.index }}</span>
+        <div>
+          <span class="biz-kicker">{{ business[loop.index0].name }}</span>
+          <h3>{{ c.title }}</h3>
+        </div>
+      </div>
+      <div class="biz-items">
+        {%- for it in c.items %}
+        <div class="biz-item">
+          <b>{{ it.h }}</b>
+          <ul>{% for d in it.d %}<li>{{ d }}</li>{% endfor %}</ul>
+        </div>
+        {%- endfor %}
+      </div>
+    </article>
+    {%- endfor %}
+  </div>
+</section>
+
+<section id="flagship" class="mint">
+  <div class="wrap sec" style="border-bottom: 0">
+    <div class="stack">
+      <p class="eyebrow">대표 사업</p>
+      <h2 class="h2">단계별로 키워 갈 세 가지</h2>
+    </div>
+    <div class="flags">
+      {%- for f in bizplan.flagship %}
+      <article class="flag">
+        <span class="flag-stage">{{ f.stage }}</span>
+        <h3>{{ f.title }}</h3>
+        <p class="muted flag-sub">{{ f.sub }}</p>
+        <p>{{ f.goal }}</p>
+        <details>
+          <summary>주요 추진내용 보기</summary>
+          <ol>{% for st in f.steps %}<li>{{ st }}</li>{% endfor %}</ol>
+          <p class="flag-effect"><b>기대효과</b> {{ f.effect }}</p>
+        </details>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="roadmap" class="wrap sec">
+  <div class="stack">
+    <p class="eyebrow">로드맵</p>
+    <h2 class="h2">이렇게 걸어갑니다</h2>
+  </div>
+  <div class="road">
+    {%- for r in bizplan.roadmap %}
+    <div class="road-step">
+      <span class="road-dot">{{ loop.index }}</span>
+      <span class="flag-stage">{{ r.stage }}</span>
+      <h3>{{ r.title }}</h3>
+      <ul>{% for i in r.items %}<li>{{ i }}</li>{% endfor %}</ul>
+    </div>
+    {%- endfor %}
   </div>
 </section>
 

@@ -384,3 +384,42 @@ html { scroll-behavior: smooth; }
   .hero.has-img .hero-mark span:first-child { color: #c4e6dd; text-shadow: none; }
   .ph.has-img .ph-in { padding-top: 64px; }
 }
+
+/* ===== 주요사업 상세 ===== */
+.row-link { color: inherit; align-items: center; transition: background 0.25s; border-radius: 8px; }
+.row-link:hover { background: var(--ground); color: inherit; }
+.row-link .go { margin-left: auto; color: var(--accent); font-weight: 700; }
+.biz-list { display: flex; flex-direction: column; gap: 20px; }
+.biz { border: 1px solid var(--line); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 24px; scroll-margin-top: 96px; background: #ffffff; }
+.biz:target { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.biz-head { display: flex; align-items: center; gap: 16px; }
+.biz-head .num { width: 44px; height: 44px; flex: none; font-size: 18px; }
+.biz-kicker { display: block; font-size: 14px; font-weight: 700; color: var(--accent); }
+.biz-head h3 { margin: 0; font-family: var(--serif); font-size: 26px; line-height: 1.35; }
+.biz-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 16px; }
+.biz-item { background: var(--ground); border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 8px; }
+.biz-item b { font-size: 17px; }
+.biz-item ul, .road-step ul { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 15px; display: flex; flex-direction: column; gap: 4px; }
+.flags { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px; align-items: start; }
+.flag { background: #ffffff; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 12px; border: 1px solid var(--line-mint); }
+.flag h3 { margin: 0; font-family: var(--serif); font-size: 22px; line-height: 1.4; }
+.flag p { margin: 0; font-size: 15px; color: var(--ink-2); }
+.flag .flag-sub { font-size: 14px; color: var(--muted); }
+.flag-stage { align-self: flex-start; font-size: 13px; font-weight: 700; color: #ffffff; background: var(--accent); padding: 3px 12px; border-radius: 999px; }
+.flag details { border-top: 1px solid var(--line); padding-top: 12px; margin-top: 4px; }
+.flag summary { cursor: pointer; font-weight: 700; color: var(--accent); font-size: 15px; list-style: none; }
+.flag summary::-webkit-details-marker { display: none; }
+.flag summary::after { content: " ↓"; }
+.flag details[open] summary::after { content: " ↑"; }
+.flag ol { margin: 12px 0; padding-left: 20px; font-size: 15px; color: var(--ink-2); display: flex; flex-direction: column; gap: 6px; }
+.flag-effect { background: var(--ground); border-radius: 10px; padding: 12px 14px; }
+.flag-effect b { display: block; color: var(--ink); margin-bottom: 2px; }
+.road { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 0; position: relative; }
+.road-step { position: relative; padding: 56px 24px 8px 0; display: flex; flex-direction: column; gap: 10px; border-top: 2px solid var(--accent); }
+.road-dot { position: absolute; top: -19px; left: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 700; box-shadow: 0 0 0 6px #ffffff; }
+.road-step h3 { margin: 0; font-size: 20px; }
+@media (max-width: 720px) {
+  .biz { padding: 22px; }
+  .biz-head h3 { font-size: 21px; }
+  .road { gap: 28px; }
+}
