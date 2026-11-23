@@ -1,7 +1,7 @@
 ---
 title: 사단법인 공간 홈페이지를 열었습니다
 date: 2026-11-23
-pinned: true
+pinned: false
 ---
 사단법인 공간의 홈페이지를 열었습니다.
 
