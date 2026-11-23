@@ -90,7 +90,8 @@ async function handleContact(request, env) {
   const failed = results.filter((r) => r.status === "rejected");
   failed.forEach((r) => console.log("send failed", String(r.reason)));
   if (failed.length === results.length) {
-    return json({ ok: false, error: "전송하지 못했습니다. 잠시 뒤 다시 시도하시거나 이메일로 보내 주세요." }, 502);
+    const detail = String(failed[0].reason && failed[0].reason.message || failed[0].reason).slice(0, 200);
+    return json({ ok: false, error: "전송하지 못했습니다. 잠시 뒤 다시 시도하시거나 이메일로 보내 주세요.", detail }, 502);
   }
   return json({ ok: true });
 }
