@@ -5,7 +5,7 @@ backend:
   name: github
   repo: gonggan-npo/gonggan-homepage
   branch: main
-  base_url: https://AUTH-WORKER-URL  # GitHub 로그인 중계(Cloudflare Worker) 주소
+  base_url: https://gonggan-homepage.gonggan-npo.workers.dev
   commit_messages:
     create: "새 글: {{collection}} \"{{slug}}\""
     update: "수정: {{collection}} \"{{slug}}\""
@@ -14,7 +14,8 @@ backend:
     deleteMedia: "파일 삭제: {{path}}"
 
 # 내 컴퓨터에서 미리 시험할 때만 쓰임 (npx decap-server)
-local_backend: true
+# 내 컴퓨터 시험용 (평소엔 꺼 둠)
+# local_backend: true
 
 locale: ko
 site_url: https://gonggan.org
