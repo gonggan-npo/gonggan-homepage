@@ -2,6 +2,6 @@
   "layout": "item.njk",
   "section": "business",
   "kindLabel": "인재 양성·교육",
-  "backUrl": "/business/#edu",
+  "backUrl": "/business/",
   "permalink": "/business/programs/{{ page.inputPath | basename }}/"
 }

@@ -14,7 +14,7 @@ permalink: /business/
       <a href="#core">핵심사업</a>
       <a href="#flagship">대표 사업</a>
       <a href="#roadmap">로드맵</a>
-      <a href="#research">자료·공고·사례</a>
+      {%- if bizplan.show_lists %}<a href="#research">자료·공고·사례</a>{% endif %}
     </nav>
   </div>
 </section>
@@ -100,6 +100,8 @@ permalink: /business/
   </div>
 </section>
 
+{#- 자료·공고·사례 영역: 지금은 숨김. 보이려면 src/_data/bizplan.json 의 show_lists 를 true 로 #}
+{%- if bizplan.show_lists %}
 <section id="research" class="wrap sec">
   <div class="stack">
     <p class="eyebrow">연구·정책</p>
@@ -165,3 +167,4 @@ permalink: /business/
   <p class="empty">현장 사업 사례를 준비하고 있습니다.</p>
   {%- endif %}
 </section>
+{%- endif %}
