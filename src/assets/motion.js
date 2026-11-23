@@ -91,10 +91,15 @@
       var vh = window.innerHeight;
 
       // 첫 화면: 커튼이 덮을수록 살짝 작아지고 흐려짐
-      var c = curtain.getBoundingClientRect().top;
-      var p = clamp(1 - c / vh);
-      heroIn.style.transform = "translateY(" + (-p * 60) + "px) scale(" + (1 - p * 0.08) + ")";
-      heroIn.style.opacity = String(1 - p * 0.9);
+      // 맨 위에서는 효과 없이 또렷하게, 내린 만큼만 변화
+      var p = clamp(window.scrollY / hero.offsetHeight);
+      if (p <= 0) {
+        heroIn.style.transform = "";
+        heroIn.style.opacity = "";
+      } else {
+        heroIn.style.transform = "translateY(" + (-p * 60).toFixed(1) + "px) scale(" + (1 - p * 0.08).toFixed(4) + ")";
+        heroIn.style.opacity = String(1 - p * 0.6);
+      }
 
       // SPACE 영역: 아래에서 올라오며 둥근 카드 → 화면 가득
       if (dark) {
