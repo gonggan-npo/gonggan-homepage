@@ -1,9 +1,54 @@
 {
   "list": [
-    { "name": "경상남도", "url": "https://www.gyeongnam.go.kr", "logo": "" },
-    { "name": "창원특례시", "url": "https://www.changwon.go.kr", "logo": "" },
-    { "name": "국토교통부", "url": "https://www.molit.go.kr", "logo": "" },
-    { "name": "도시재생종합정보체계", "url": "https://www.city.go.kr", "logo": "" },
-    { "name": "건축공간연구원", "url": "https://www.auri.re.kr", "logo": "" }
+    {
+      "name": "국토교통부",
+      "url": "https://www.molit.go.kr",
+      "logo": ""
+    },
+    {
+      "name": "농림축산식품부",
+      "url": "https://www.mafra.go.kr",
+      "logo": ""
+    },
+    {
+      "name": "경상남도",
+      "url": "https://www.gyeongnam.go.kr",
+      "logo": ""
+    },
+    {
+      "name": "양산시",
+      "url": "https://www.yangsan.go.kr",
+      "logo": ""
+    },
+    {
+      "name": "농산어촌지역개발 공간정보시스템",
+      "url": "https://www.raise.go.kr",
+      "logo": ""
+    },
+    {
+      "name": "도시재생종합정보체계",
+      "url": "https://www.city.go.kr",
+      "logo": ""
+    },
+    {
+      "name": "주택도시보증공사",
+      "url": "https://www.khug.or.kr",
+      "logo": ""
+    },
+    {
+      "name": "한국토지주택공사",
+      "url": "https://www.lh.or.kr",
+      "logo": ""
+    },
+    {
+      "name": "경상남도 도시재생지원센터",
+      "url": "http://www.gnurc.or.kr",
+      "logo": ""
+    },
+    {
+      "name": "양산시지역활성화지원센터",
+      "url": "http://ysrrsc.or.kr",
+      "logo": ""
+    }
   ]
 }

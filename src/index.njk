@@ -125,13 +125,13 @@ section: home
   {%- endif %}
 </section>
 
-<section aria-label="연계 기관" style="border-top: 1px solid var(--line)">
+<section aria-label="유관·연계·협력 기관" style="border-top: 1px solid var(--line)">
   <div class="wrap" style="padding-top: 56px; padding-bottom: 56px; display: flex; flex-direction: column; gap: 20px">
-    <p style="margin: 0; font-size: 15px; font-weight: 700">연계 기관</p>
+    <p style="margin: 0; font-size: 15px; font-weight: 700">유관·연계·협력 기관</p>
     <div class="partners">
       {%- for p in partners.list %}
       <a href="{{ p.url }}" class="partner" target="_blank" rel="noopener">
-        {%- if p.logo %}<img src="{{ p.logo }}" alt="{{ p.name }}">{% else %}{{ p.name }}{% endif %}
+        {%- if p.logo %}<img src="{{ p.logo }}" alt="{{ p.name }}">{% else %}<span>{{ p.name }}</span>{% endif %}
         <span aria-hidden="true" class="muted">↗</span>
       </a>
       {%- endfor %}
