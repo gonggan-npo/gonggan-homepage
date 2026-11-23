@@ -5,7 +5,7 @@ backend:
   name: github
   repo: gonggan-npo/gonggan-homepage
   branch: main
-  base_url: https://gonggan-homepage.gonggan-npo.workers.dev
+  base_url: https://gonggan-auth.gonggan-npo.workers.dev
   commit_messages:
     create: "새 글: {{collection}} \"{{slug}}\""
     update: "수정: {{collection}} \"{{slug}}\""
