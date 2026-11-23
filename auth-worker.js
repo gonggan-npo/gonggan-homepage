@@ -14,19 +14,35 @@ function page(body) {
 
 // 로그인 결과를 관리자 창으로 돌려보내는 페이지 (Decap CMS 규격)
 function result(status, payload) {
-  const content = JSON.stringify(payload).replace(/</g, "\\u003c");
+  const esc = (v) => JSON.stringify(v).replace(/</g, "\\u003c");
+  const message = esc(`authorization:github:${status}:${JSON.stringify(payload)}`);
+  const ok = status === "success";
   return page(`<!doctype html><meta charset="utf-8"><body>
+<p id="msg" style="font-family:sans-serif">로그인 처리 중입니다...</p>
 <script>
 (function () {
-  function send() {
-    if (window.opener) window.opener.postMessage(
-      "authorization:github:${status}:${content}", "*");
+  var msg = document.getElementById("msg");
+  var done = false;
+  var tries = 0;
+  if (!window.opener) {
+    msg.textContent = "[오류 A] 관리자 창과 연결이 끊겼습니다. 이 창을 닫고 관리자 페이지에서 다시 로그인해 주세요.";
+    return;
   }
-  window.addEventListener("message", function () { send(); }, { once: true });
-  if (window.opener) window.opener.postMessage("authorizing:github", "*");
+  window.addEventListener("message", function (e) {
+    if (done || e.data !== "authorizing:github") return;
+    done = true;
+    e.source.postMessage(${message}, e.origin);
+    msg.textContent = ${ok} ? "로그인 완료. 창이 닫힙니다." : "[오류 C] 로그인 실패: " + ${esc(payload.message || "")};
+    if (${ok}) setTimeout(function () { window.close(); }, 800);
+  });
+  (function ping() {
+    if (done) return;
+    if (tries++ > 10) { msg.textContent = "[오류 B] 관리자 창이 응답하지 않습니다."; return; }
+    window.opener.postMessage("authorizing:github", "*");
+    setTimeout(ping, 1000);
+  })();
 })();
 </script>
-<p style="font-family:sans-serif">로그인 처리 중입니다. 창이 자동으로 닫히지 않으면 닫아 주세요.</p>
 </body>`);
 }
 
