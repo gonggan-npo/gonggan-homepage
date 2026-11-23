@@ -347,3 +347,22 @@ html { scroll-behavior: smooth; }
   html { scroll-behavior: auto; }
   @view-transition { navigation: none; }
 }
+
+/* ===== 메인 화면 스크롤 전환 ===== */
+/* 첫 화면은 제자리에 머물고, 아래 내용이 커튼처럼 덮으며 올라옵니다 */
+.fx .hero { position: sticky; z-index: 0; }
+.fx .hero-in { will-change: transform, opacity; transform-origin: 50% 0; }
+.fx .curtain { position: relative; z-index: 1; background: #ffffff; border-radius: 40px 40px 0 0; box-shadow: 0 -24px 48px rgba(20, 40, 34, 0.08); }
+/* SPACE 영역: 둥근 카드에서 화면 가득 펼쳐짐 */
+.fx .dark { clip-path: inset(0 var(--inset, 0px) round var(--round, 0px)); will-change: clip-path; }
+/* 지금 읽는 SPACE 줄만 밝게 */
+.fx .space-row { transition: opacity 0.5s ease; opacity: 0.35; }
+.fx .space-row.act { opacity: 1; }
+.fx .space-row.act .l { transform: scale(1.12); color: #ffffff; }
+/* 섹션 제목: 가려진 선 아래에서 밀려 올라옴 */
+.fx .h2.rv { transform: translateY(0.6em); clip-path: inset(0 0 100% 0); transition: transform 0.9s cubic-bezier(.2,.7,.2,1), clip-path 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.9s; }
+.fx .h2.rv.in { transform: none; clip-path: inset(0 0 -10% 0); }
+/* 주요사업 배경: 들어오면 흰색 → 민트로 물듦 */
+.fx .mint { transition: background-color 0.8s ease; background-color: #ffffff; }
+.fx .mint.lit { background-color: var(--ground); }
+@media (max-width: 720px) { .fx .curtain { border-radius: 24px 24px 0 0; } }
