@@ -31,4 +31,8 @@ npm start      # http://localhost:8080 미리보기
 npm run build  # _site 폴더에 결과물
 ```
 
-배포: Cloudflare Pages (빌드 명령 `npm run build`, 출력 폴더 `_site`).
+배포: Cloudflare Workers (GitHub main 에 올리면 자동 배포, 설정은 `wrangler.jsonc`).
+- 정적 파일: `npm run build` → `_site`
+- 문의하기 양식: `worker/index.js` 가 `/api/contact` 를 받아 Cloudflare Email Routing 으로 메일 전송
+  - 받는 주소: Cloudflare 대시보드 > gonggan-homepage > Settings > Variables 의 `CONTACT_TO` (쉼표로 여러 개)
+  - 받는 주소는 Email Routing > Destination addresses 에서 인증되어 있어야 합니다.
