@@ -285,3 +285,65 @@ th { font-weight: 700; background: var(--ground); color: var(--ink-2); font-size
   .read-head h1 { font-size: 30px; }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+/* ===== 화면 효과 ===== */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.35s; }
+html { scroll-behavior: smooth; }
+.sec, section[id] { scroll-margin-top: 88px; }
+
+/* 상단 메뉴: 고정 + 스크롤 시 그림자 */
+.hd { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, 0.92); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); transition: box-shadow 0.3s, padding 0.3s; }
+.hd-in { transition: padding 0.3s; }
+.hd.scrolled { box-shadow: 0 6px 24px rgba(20, 40, 34, 0.08); }
+.hd.scrolled .hd-in { padding-top: 12px; padding-bottom: 12px; }
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform-origin: 0 50%; transform: scaleX(0); z-index: 60; pointer-events: none; }
+
+/* 메뉴 밑줄 */
+.nav a { position: relative; padding: 4px 0; }
+.nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: var(--accent); transform: scaleX(0); transition: transform 0.3s ease; }
+.nav a:hover::after, .nav a.on::after { transform: scaleX(1); }
+.tabs a { transition: color 0.2s, border-color 0.2s; }
+.tabs a:hover { border-bottom-color: var(--line-mint); }
+
+/* 버튼·카드 마우스오버 */
+.btn { transition: background 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(18, 133, 113, 0.22); }
+.card, .tile, .news-card, .logo-box, .step, .value, .partners > * { transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s; }
+.card:hover, .logo-box:hover, .partners > *:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(20, 40, 34, 0.1); border-color: var(--line-mint); }
+.card .more { transition: letter-spacing 0.3s; }
+.card:hover .more { letter-spacing: 0.04em; }
+.news-card .ph-img img, .tile .ph-img img, .item .thumb img { transition: transform 0.6s ease; }
+.news-card:hover .ph-img img, .tile:hover .ph-img img, .item:hover .thumb img { transform: scale(1.05); }
+.news-card:hover, .tile:hover { transform: translateY(-4px); }
+.item { transition: background 0.25s, padding 0.25s; }
+.item:hover { background: var(--ground); }
+.space-row .l { transition: transform 0.4s ease, color 0.4s; }
+.space-row:hover .l { transform: scale(1.12); color: #ffffff; }
+.mission .dot { transition: transform 0.4s ease; }
+.mission:hover .dot { transform: scale(1.08) rotate(-4deg); }
+
+/* 첫 화면 등장 */
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: none; } }
+.hero-text > * { animation: rise 0.9s cubic-bezier(.2,.7,.2,1) both; }
+.hero-text > :nth-child(2) { animation-delay: 0.12s; }
+.hero-text > :nth-child(3) { animation-delay: 0.28s; }
+.hero-text > :nth-child(4) { animation-delay: 0.42s; }
+.hero-mark span { animation: slideIn 1s cubic-bezier(.2,.7,.2,1) both; }
+.hero-mark span:first-child { animation-delay: 0.35s; }
+.hero-mark span:last-child { animation-delay: 0.75s; }
+
+/* 스크롤 등장 (자바스크립트가 켜졌을 때만) */
+.rv { opacity: 0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(.2,.7,.2,1) var(--d, 0ms), transform 0.8s cubic-bezier(.2,.7,.2,1) var(--d, 0ms); }
+.rv.in { opacity: 1; transform: none; }
+.space-row.rv { transform: translateX(-28px); }
+.space-row.rv.in { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .rv { opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+  @view-transition { navigation: none; }
+}
