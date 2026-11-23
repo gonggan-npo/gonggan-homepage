@@ -14,7 +14,6 @@ permalink: /about/
       <a href="#vision">비전·미션</a>
       <a href="#org">조직·임원</a>
       <a href="#articles">정관</a>
-      <a href="#contact">오시는 길·문의</a>
     </nav>
   </div>
 </section>
@@ -117,19 +116,3 @@ permalink: /about/
   </div>
 </section>
 
-<section id="contact" class="wrap sec">
-  <div class="stack">
-    <p class="eyebrow">오시는 길·문의</p>
-    <h2 class="h2">창원스마트업타워 506호</h2>
-  </div>
-  <div class="map">
-    <div class="ph-img">
-      {%- if site.map_url %}<a href="{{ site.map_url }}" target="_blank" rel="noopener" class="btn">지도에서 보기 ↗</a>{% else %}지도 준비 중{% endif %}
-    </div>
-    <div class="info">
-      <div><small>주소</small>{{ site.address }}</div>
-      <div><small>이메일</small>{{ site.email }}</div>
-      {%- if site.transit %}<div><small>대중교통</small>{{ site.transit }}</div>{% endif %}
-    </div>
-  </div>
-</section>
